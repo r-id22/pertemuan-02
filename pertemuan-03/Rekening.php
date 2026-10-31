@@ -5,7 +5,7 @@ class Rekening {
     private float $saldo = 0;
     private array $riwayat = [];
 
-    public function __construct(string $nomor = "726601010410531", string $pemilik = "Rahmansyah") {
+    public function __construct(string $nomor, string $pemilik) {
         $this->nomor = $nomor;
         $this->pemilik = $pemilik;
     }
@@ -15,7 +15,7 @@ class Rekening {
             return false;
         }
         $this->saldo += $jumlah;
-        $this->riwayat[] = "Setor tunai: +Rp " . number_format($jumlah, 0, ',', '.');
+        $this->riwayat[] = "Setor: +{$jumlah}";
         return true;
     }
 
@@ -24,7 +24,7 @@ class Rekening {
             return false;
         }
         $this->saldo -= $jumlah;
-        $this->riwayat[] = "Tarik tunai: -Rp " . number_format($jumlah, 0, ',', '.');
+        $this->riwayat[] = "Tarik: -{$jumlah}";
         return true;
     }
 
@@ -34,7 +34,7 @@ class Rekening {
         }
         $this->tarik($jumlah);
         $tujuan->setor($jumlah);
-        $this->riwayat[] = "Transfer: -Rp " . number_format($jumlah, 0, ',', '.') . " ke Rekening " . $tujuan->getNomor() . " ({$tujuan->getPemilik()})";
+        $this->riwayat[] = "Transfer: -{$jumlah} ke {$tujuan->pemilik}";
         return true;
     }
 
@@ -46,11 +46,11 @@ class Rekening {
         return $this->riwayat;
     }
 
-    public function getNomor(): string {
-        return $this->nomor;
-    }
-
     public function getPemilik(): string {
         return $this->pemilik;
+    }
+
+    public function getNomor(): string {
+        return $this->nomor;
     }
 }
