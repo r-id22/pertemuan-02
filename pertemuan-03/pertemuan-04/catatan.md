@@ -5,4 +5,4 @@
 - **Ringkasan Perubahan**: 
   - Menghemat jumlah baris kode dan membuat sintaks jauh lebih bersih karena deklarasi properti dan inisialisasi pada constructor disatukan langsung pada parameter class `Mahasiswa`.
   - Memastikan integritas data NIM dengan properti `readonly` agar tidak dapat diubah setelah objek dibuat.
-  - 
+  
