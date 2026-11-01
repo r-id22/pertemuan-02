@@ -1,0 +1,18 @@
+Catatan Lab Sheet Pertemuan 5: Inheritance dan Method Overriding
+
+Berikut adalah dokumentasi dan catatan pelaksanaan praktikum Pemrograman Berorientasi Objek untuk Pertemuan 5.
+
+1. Diagram Hierarki Kelas (Inheritance)
+Struktur hierarki objek `Pegawai` dalam sistem manajemen sekolah:
+
+          [ Pegawai (Abstract Base Class) ]
+           - final public function info()
+           - abstract public function hitungGaji()
+                     /        |        \
+                    /         |         \
+         [ Guru ]        [ Staf ]     [ Honorer ]
+          (Override)      (Override)   (Override) 
+2. Penjelasan Implementasi Tugas
+- **Hierarki & Overriding (`Guru`, `Staf`, `Honorer`)**: Seluruh class anak mewarisi class abstrak `Pegawai` dan mengimplementasikan kembali (*override*) method `hitungGaji()` dengan rumus perhitungan masing-masing.
+- **Uji Coba Keyword `final` pada Method `info()`**: Method `info()` di class `Pegawai` dikunci menggunakan keyword `final`. Ketika diuji coba untuk di-*override* pada class anak, PHP menghasilkan *Fatal Error* (`Fatal error: Cannot override final method Pegawai::info()`), yang membuktikan bahwa keyword `final` berhasil melindungi method agar tidak dapat diubah oleh class turunannya.
+- **Komposisi (`Sekolah`)**: Class `Sekolah` menerapkan relasi komposisi dengan menampung daftar objek `Pegawai` di dalam sebuah *array*, kemudian menghitung total keseluruhan alokasi gaji pegawai melalui method `totalGaji()`.
